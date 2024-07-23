@@ -3,7 +3,7 @@
 
 int main()
 {
-    kyu::queue<int> queue;
+    vtrkyu::queue<int> queue;
     queue.push(5);
     queue.pop();
 

@@ -1,6 +1,7 @@
 #ifndef __QUEUE__
 #define __QUEUE__
 #include <iostream>
+#include "Vector.hpp"
 
 namespace kyu
 {
@@ -119,7 +120,86 @@ namespace kyu
                 std::cout << temp->val << "-->";
                 temp = temp->next;
             }
-            std::cout << temp->val << "<--rear"<<std::endl; 
+            std::cout << temp->val << "<--rear"<< std::endl; 
+        }
+        else
+        {
+            std::cout << "NULL"<<std::endl;
+        }
+    }
+}
+
+namespace vtrkyu
+{
+    template <class T>
+    class queue
+    {
+        private:
+        vtr::vector<T> container;
+
+        public:
+        queue();
+        void push(T);
+        void pop();
+        T first();
+        T back();
+        bool empty();
+        int size();
+        void print();
+    };
+
+    template <class T>
+    queue<T>::queue() {}
+
+    template <class T>
+    void queue<T>::push(T new_val)
+    {
+        container.push_back(new_val);
+    }
+
+    template <class T>
+    void queue<T>::pop()
+    {
+        if(!container.empty())
+            container.erase(container.begin());
+        else
+            return;
+    }
+
+    template <class T>
+    T queue<T>::first()
+    {
+        return container.front();
+    }
+
+    template <class T>
+    T queue<T>::back()
+    {
+        return container.back();
+    }
+
+    template <class T>
+    bool queue<T>::empty()
+    {
+        return container.empty();
+    }
+
+    template <class T>
+    int queue<T>::size()
+    {
+        return container.size();
+    }
+
+    template <class T>
+    void queue<T>::print()
+    {
+        if(!container.empty())
+        {
+            std::cout << "front-->";
+            int i;
+            for(i=0; i<container.size()-1; i++)
+                std::cout << container[i] << "-->";
+            std::cout << container[++i] << "<--rear"<< std::endl; 
         }
         else
         {
