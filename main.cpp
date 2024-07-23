@@ -4,17 +4,20 @@
 int main()
 {
     kyu::queue<int> queue;
-    queue.en_queue(5);
+    queue.push(5);
+    queue.pop();
+
     for (int i=0; i<15; i+=2)
     {
-        queue.en_queue(i);
+        queue.push(i * 5);
+        std::cout << "Queue size: " << queue.size() << std::endl;
         queue.print();
     }
-    for (int i=0; i<5; i++)
+    for (int i=0; i<16; i++)
     {
-        std::cout << "Value DeQueued: " << queue.de_queue() << std::endl;
+        queue.pop();
         queue.print();
     }
-    std::cout << "Value at Front: " << queue.peek() << std::endl;
-    std::cout << "Queue is Empty: " << queue.is_empty() << std::endl;
+    std::cout << "Queue is Empty: " << queue.empty() << std::endl;
+    std::cout << "First Element: " << queue.first() << "\nLast Element: " << queue.back() << std::endl;
 }

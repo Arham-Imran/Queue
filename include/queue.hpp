@@ -23,10 +23,12 @@ namespace kyu
 
         public:
         queue();
-        void en_queue(T);
-        T de_queue();
-        T peek();
-        bool is_empty();
+        void push(T);
+        void pop();
+        T first();
+        T back();
+        bool empty();
+        int size();
         void print();
     };
 
@@ -34,7 +36,7 @@ namespace kyu
     queue<T>::queue() : front(NULL), rear(NULL) {}
 
     template <class T>
-    void queue<T>::en_queue(T new_val)
+    void queue<T>::push(T new_val)
     {
         if(front == NULL)
         {
@@ -50,30 +52,59 @@ namespace kyu
     }
 
     template <class T>
-    T queue<T>::de_queue()
+    void queue<T>::pop()
     {
-        Node<T>* temp = front;
-        T temp_val = temp->val;
-        front = front->next;
-        delete temp;
         if(front == NULL)
-            rear = NULL;
-        return temp_val;
+            return;
+        else
+        {
+            Node<T>* temp = front;
+            T temp_val = temp->val;
+            front = front->next;
+            delete temp;
+            if(front == NULL)
+                rear = NULL;
+        }
     }
 
     template <class T>
-    T queue<T>::peek()
+    T queue<T>::first()
     {
-        return front->val;
+        if(front != NULL)
+            return front->val;
+        else
+            return T();
     }
 
     template <class T>
-    bool queue<T>::is_empty()
+    T queue<T>::back()
+    {
+        if(front != NULL)
+            return rear->val;
+        else
+            return T();
+    }
+
+    template <class T>
+    bool queue<T>::empty()
     {
         if(front == NULL)
             return true;
         else
             return false;
+    }
+
+    template <class T>
+    int queue<T>::size()
+    {
+        Node<T>* temp = front;
+        int queue_size = 0;
+        while(temp != NULL)
+        {
+            temp = temp->next;
+            queue_size++;
+        }
+        return queue_size;
     }
 
     template <class T>
@@ -88,11 +119,11 @@ namespace kyu
                 std::cout << temp->val << "-->";
                 temp = temp->next;
             }
-            std::cout << temp->val << "<--rear\n"; 
+            std::cout << temp->val << "<--rear"<<std::endl; 
         }
         else
         {
-            std::cout << "NULL\n";
+            std::cout << "NULL"<<std::endl;
         }
     }
 }
