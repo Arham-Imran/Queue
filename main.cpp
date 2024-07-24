@@ -7,7 +7,7 @@ int main()
     queue.push(5);
     queue.pop();
 
-    for (int i=0; i<15; i+=2)
+    for (int i=0; i<15; i++)
     {
         queue.push(i * 5);
         std::cout << "Queue size: " << queue.size() << std::endl;

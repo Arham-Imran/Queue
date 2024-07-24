@@ -169,13 +169,19 @@ namespace vtrkyu
     template <class T>
     T queue<T>::first()
     {
-        return container.front();
+        if(!container.empty())
+            return container.front();
+        else
+            return T();
     }
 
     template <class T>
     T queue<T>::back()
     {
-        return container.back();
+        if(!container.empty())
+            return container.back();
+        else
+            return T();
     }
 
     template <class T>
@@ -195,11 +201,11 @@ namespace vtrkyu
     {
         if(!container.empty())
         {
-            std::cout << "front-->";
-            int i;
-            for(i=0; i<container.size()-1; i++)
-                std::cout << container[i] << "-->";
-            std::cout << container[++i] << "<--rear"<< std::endl; 
+            std::cout << "front";
+            
+            for(int i =0; i<container.size(); i++)
+                std::cout  << "-->" << container[i];
+            std::cout <<"<--rear"<< std::endl; //Review: Tell me whats wrong here
         }
         else
         {
